@@ -29,10 +29,10 @@ func NewSDKSocketClient(addr string, port uint16, timeout time.Duration) (*SDKSo
 }
 
 // Fetch the data
-func (client *SDKSocketClient) Fetch(api string, apiArgs string) string {
+func (client *SDKSocketClient) Fetch(apiName string, apiArgs []string, apikArgs map[string]interface{}) Response {
 	var buffer bytes.Buffer
 	template := "[\"%s\",\"%s\"]"
-	str := fmt.Sprintf(template, api, apiArgs)
+	str := fmt.Sprintf(template, apiName, apiArgs)
 	_, err := buffer.WriteString(str)
 	if err != nil {
 
@@ -43,7 +43,8 @@ func (client *SDKSocketClient) Fetch(api string, apiArgs string) string {
 
 	buffer.Reset()
 	buffer.Write(result)
-	return buffer.String()
+	// return buffer.String()
+	return Response{}
 }
 
 // Close the net.Conn

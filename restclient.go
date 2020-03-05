@@ -26,8 +26,8 @@ func NewRestClient(addr string, port uint16, timeout time.Duration) (*RestClient
 }
 
 // Fetch the data
-func (client *RestClient) Fetch(api string, apiArgs string) string {
-	return ""
+func (client *RestClient) Fetch(apiName string, apiArgs []string, apikArgs map[string]interface{}) Response {
+	return Response{}
 }
 
 // Close the net.Conn
