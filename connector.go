@@ -6,7 +6,7 @@ import (
 
 // Connect provide some function
 type Connect interface {
-	Fetch(apiName string, apiArgs []string, apikArgs map[string]interface{}) Response
+	Fetch(apiName string, apiArgs []string, apiKArgs map[string]interface{}) Response
 	Close()
 }
 
@@ -23,8 +23,7 @@ type Response struct {
 // NewConnector create a RestClient or SDKSocketClient
 func NewConnector(ip string, port uint16, timeout time.Duration, isRest bool) (Connect, error) {
 	if isRest {
-		return NewRestClient(ip, port, timeout)
-	} else {
-		return NewSDKSocketClient(ip, port, timeout)
+		return NewRestClient(ip, port, timeout, "")
 	}
+	return NewSDKSocketClient(ip, port, timeout)
 }

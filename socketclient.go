@@ -2,6 +2,7 @@ package zvmconnector
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net"
@@ -29,11 +30,13 @@ func NewSDKSocketClient(addr string, port uint16, timeout time.Duration) (*SDKSo
 }
 
 // Fetch the data
-func (client *SDKSocketClient) Fetch(apiName string, apiArgs []string, apikArgs map[string]interface{}) Response {
+func (client *SDKSocketClient) Fetch(apiName string, apiArgs []string, apiKArgs map[string]interface{}) Response {
 	var buffer bytes.Buffer
-	template := "[\"%s\",\"%s\"]"
-	str := fmt.Sprintf(template, apiName, apiArgs)
-	_, err := buffer.WriteString(str)
+	msgTemplate := "[\"%s\",\"%s\",\"%s\"]"
+	bArgs, _ := json.Marshal(apiArgs)
+	bKArgs, _ := json.Marshal(apiKArgs)
+	msg := fmt.Sprintf(msgTemplate, apiName, string(bArgs), string(bKArgs))
+	_, err := buffer.WriteString(msg)
 	if err != nil {
 
 	}
