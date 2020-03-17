@@ -37,12 +37,12 @@ func (client *RestClient) Fetch(apiName string, apiArgs []string, apiKArgs map[s
 func (client *RestClient) Close() {
 }
 
-// GetToken will request a token by admin-token
-func (client *RestClient) GetToken(tokenPath string) (string, error) {
+// RefreshToken will request a token by admin-token
+func (client *RestClient) RefreshToken(tokenPath string) {
 	//TODO: LOCK
 	f, err := os.Open(tokenPath)
 	if err != nil {
-		return "", err
+		return
 	}
 	var buf []byte
 	_, err = f.Read(buf)
@@ -50,10 +50,20 @@ func (client *RestClient) GetToken(tokenPath string) (string, error) {
 	req, _ := http.NewRequest("POST", client.URL, nil)
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("X-Admin-Token", atoken)
-	res, _ := client.connect.Do(req)
+	res, err := client.connect.Do(req)
 	if err != nil {
 
 	}
 	defer res.Body.Close()
-	return res.Header.Get("X-Auth-Token"), nil
+	client.authToken = res.Header.Get("X-Auth-Token")
+}
+
+func (client *RestClient) ReqVersion() {
+	url := client.URL + "\\"
+	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("X-Auth-Token", client.authToken)
+	res, _ := client.connect.Do(req)
+	defer res.Body.Close()
+
 }
