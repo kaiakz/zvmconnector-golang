@@ -1,82 +1,42 @@
-import docutils.nodes
-import docutils.parsers.rst
-import docutils.utils
-import docutils.core
+import yaml
+import json
 
 rst_path = "./source/restapi.rst"
 
-# def parse_rst(text: str) -> docutils.nodes.document:
-#     parser = docutils.parsers.rst.Parser()
-#     components = (docutils.parsers.rst.Parser,)
-#     settings = docutils.frontend.OptionParser(components=components).get_default_values()
-#     settings.pep_references = None
-#     settings.rfc_references = None
-#     document = docutils.utils.new_document('<restapi>', settings=settings)
-#     parser.parse(text, document)
-#     return document
-
-
 f = open(rst_path, "r")
-# text = f.read()
-# f.close()
-# doc = parse_rst(text)
-# visitor = MyVisitor(doc)
-# doc.walk(visitor)
-# print(doc)
 
-document = docutils.core.publish_doctree(f.read())
-# print(document)
-nodes = list(document)
-description = ''
-# f.close()
-# f=open("result.txt","w")
-# f.write(str(document))
+src = f.readlines()
 
-# for node in nodes:
-#     if str(node).startswith('<topic classes="contents"'):
-#         break
-#     if type(node) is docutils.nodes.comment\
-#     or type(node) is docutils.nodes.title:
-#         continue
-#     if type(node) is docutils.nodes.:
-#         description += node.astext() + '\n'
+i = 25
 
-# print(nodes)
-# print(description)
+raw = []
+data = []
+current = ""
 
-class MyVisitor(docutils.nodes.NodeVisitor):
+while i < len(src):
+    s = src[i]
+    i += 1
+    if len(s) == 1:
+        continue
 
-    f = None
+    #Parse the titles above "====="
+    if s.startswith("---"):
+        name = raw[-1]
+        data.append({name: name})
+    #Parse method with "**"
+    elif s.startswith("**"):
+        url = s.replace("**", "").strip()
+        data[-1]['url'] = url
+    elif s.startswith("* "):
+        current = s.replace("* ", "").replace(":", "").strip()
+        data[-1][current] = []
+    elif s.startswith("  - "):
+        # print(current)
+        data[-1][current].append(current + s.replace("  - ", "").strip())
+    elif s.startswith(".. "):
+        # restapi.rst line 363(Refresh Volume Bootmap Info) lacks "* Request"
+        data[-1][current].append(current + s.replace(".. ", "").strip())
+    else:
+        raw.append(s.strip())
 
-    def File(self, f):
-        self.f = f
-
-    # def visit_literal_block(self, node: docutils.nodes.reference) -> None:
-    #     f.write(node.astext())
-
-    def visit_paragraph(self, node: docutils.nodes.reference) -> None:
-        l = ['No directive entry for "restapi_parameters" in module "docutils.parsers.rst.languages.en".','Trying "restapi_parameters" as canonical directive name.','Unknown directive type "restapi_parameters".']
-        s = node.astext()
-        if s not in l:
-            f.write(s + "\n")
-
-    def visit_title(self, node: docutils.nodes.reference) -> None:
-        print(node.astext())
-
-    # def visit_strong(self, node: docutils.nodes.reference) -> None:
-    #     print(node.astext())
-
-    def unknown_visit(self, node: docutils.nodes.reference) -> None:
-        """Called for all other node types."""
-        pass
-
-
-vt = MyVisitor(document)
-f = open("result.txt","w")
-vt.File(f)
-document.walk(vt)
-f.close()
-
-f = open("origin.html", "w")
-f.write(str(document))
-f.close()
+print(data)

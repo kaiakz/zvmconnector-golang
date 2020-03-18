@@ -10,7 +10,7 @@ The following table gives a reference of general response data definition
 of each z/VM Cloud Connector RESTful API. In case of encountering an error,
 those information will be helpful to report bug/issue.
 
-.. restapi_parameters:: parameters.yaml
+
 
   - overallRC: ret_overallrc
   - rc: ret_rc
@@ -44,7 +44,7 @@ Get zvm cloud connector version
 
   Return the version of the zvm cloud connect API.
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output : ret_output
   - api_version: api_version_sdk
@@ -54,8 +54,6 @@ Get zvm cloud connector version
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_version.tpl
-   :language: javascript
 
 Token
 =====
@@ -70,7 +68,7 @@ you can think as a combination of username and password.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - X-Admin-Token: token_admin
 
@@ -80,7 +78,7 @@ you can think as a combination of username and password.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - X-Auth-Token: auth_token
 
@@ -110,14 +108,12 @@ List names of all the guests created by z/VM Cloud Connector.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: guest_list
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guests_list.tpl
-   :language: javascript
 
 Create Guest
 ------------
@@ -128,7 +124,7 @@ Create a vm in z/VM
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - guest: guest_dict
   - userid: userid_create
@@ -152,8 +148,6 @@ Create a vm in z/VM
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_create.tpl
-   :language: javascript
 
 * Response code:
 
@@ -161,7 +155,7 @@ Create a vm in z/VM
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: disk_list_output
   - vdev: vdev_disk
@@ -172,8 +166,6 @@ Create a vm in z/VM
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_disk_output.tpl
-   :language: javascript
 
 Guest add disks
 ---------------
@@ -184,7 +176,7 @@ Add disks for a guest
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - disk_info: disk_info
@@ -197,8 +189,6 @@ Add disks for a guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_add_disks.tpl
-   :language: javascript
 
 * Response code:
 
@@ -206,7 +196,7 @@ Add disks for a guest
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: disk_list_output
   - vdev: vdev_disk
@@ -217,8 +207,6 @@ Add disks for a guest
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_disk_output.tpl
-   :language: javascript
 
 Guest configure disks
 ---------------------
@@ -229,7 +217,7 @@ Configure additional disks for a guest
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - disk_info: disk_info
@@ -240,8 +228,6 @@ Configure additional disks for a guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_config_disks.tpl
-   :language: javascript
 
 * Response code:
 
@@ -260,7 +246,7 @@ Delete disks form a guest that in shutdown state
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - vdev_info: vdev_info
@@ -268,8 +254,6 @@ Delete disks form a guest that in shutdown state
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_delete_disks.tpl
-   :language: javascript
 
 * Response code:
 
@@ -278,8 +262,6 @@ Delete disks form a guest that in shutdown state
 * Response contents:
 
   No Response
-
-.. note::
 
   Not support delete disks when guest is active
 
@@ -292,7 +274,7 @@ Attach volume to a vm in z/VM
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - info: volume_info
   - connection: volume_conn
@@ -307,8 +289,6 @@ Attach volume to a vm in z/VM
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_volume_attach_detach.tpl
-   :language: javascript
 
 * Response code:
 
@@ -327,7 +307,7 @@ Detach volume from a vm in z/VM
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - info: volume_info
   - connection: volume_conn
@@ -342,8 +322,6 @@ Detach volume from a vm in z/VM
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_volume_attach_detach.tpl
-   :language: javascript
 
 * Response code:
 
@@ -360,9 +338,7 @@ Refresh Volume Bootmap Info
 
 Refresh a volume's bootmap info.
 
-* Request
 
-.. restapi_parameters:: parameters.yaml
 
   - fcpchannel: fcp_list
   - wwpn: wwpn_list
@@ -370,8 +346,6 @@ Refresh a volume's bootmap info.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_refresh_bootmap.tpl
-   :language: javascript
 
 * Response code:
 
@@ -379,8 +353,6 @@ Refresh a volume's bootmap info.
 
 * Response contents:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_refresh_bootmap_response.tpl
-   :language: javascript
 
 Get Volume Connector
 --------------------
@@ -391,7 +363,7 @@ Get volume connector for z/VM.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
 
@@ -401,8 +373,6 @@ Get volume connector for z/VM.
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_get_volume_connector.tpl
-   :language: javascript
 
 Get Guests stats including cpu and memory
 -----------------------------------------
@@ -413,7 +383,7 @@ Get guests cpu, memory information.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: userid_list_guest
 
@@ -423,14 +393,12 @@ Get guests cpu, memory information.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: stats_guest
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guests_get_stats.tpl
-   :language: javascript
 
 Get Guests interface stats
 --------------------------
@@ -441,7 +409,7 @@ Get guests network interface statistics.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: userid_list_guest
 
@@ -451,14 +419,12 @@ Get guests network interface statistics.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: guest_vnics
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guests_get_interface_stats.tpl
-   :language: javascript
 
 Get Guests nic info
 ---------------------
@@ -469,7 +435,7 @@ Get guests nic information, including userid, nic number, vswitch, nic id and co
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid_opt
   - nic_id: nic_id_opt
@@ -481,7 +447,7 @@ Get guests nic information, including userid, nic number, vswitch, nic id and co
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: guests_nic_info
   - userid: nic_userid
@@ -492,8 +458,6 @@ Get guests nic information, including userid, nic number, vswitch, nic id and co
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guests_get_nic_info.tpl
-   :language: javascript
 
 Show Guest definition
 ---------------------
@@ -504,7 +468,7 @@ Display the user direct by the given userid.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
 
@@ -514,14 +478,12 @@ Display the user direct by the given userid.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: user_direct_guest
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_get.tpl
-   :language: javascript
 
 Delete Guest
 ------------
@@ -532,7 +494,7 @@ Delete a guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
 
@@ -554,7 +516,7 @@ Get running information of guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
 
@@ -564,7 +526,7 @@ Get running information of guest.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: guest_info
   - max_mem_kb: guest_memory_kb_max
@@ -575,8 +537,6 @@ Get running information of guest.
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_get_info.tpl
-   :language: javascript
 
 Create Guest nic
 ----------------
@@ -587,7 +547,7 @@ Create a virtual nic on giving guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - nic: nic_set_info
@@ -598,8 +558,6 @@ Create a virtual nic on giving guest.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_create_nic.tpl
-   :language: javascript
 
 * Response code:
 
@@ -616,7 +574,7 @@ Create one or more network interfaces on giving guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - interface: network_interface_info
@@ -626,8 +584,6 @@ Create one or more network interfaces on giving guest.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_create_network_interface.tpl
-   :language: javascript
 
 * Response code:
 
@@ -644,7 +600,7 @@ Delete one network interface on giving guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - interface: network_interface_info
@@ -654,8 +610,6 @@ Delete one network interface on giving guest.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_delete_network_interface.tpl
-   :language: javascript
 
 * Response code:
 
@@ -672,15 +626,13 @@ Start a guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_start_guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_start_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -697,15 +649,13 @@ Stop a guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_stop_guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_stop_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -722,15 +672,13 @@ Stop a guest gracefully, it will firstly shutdown the os on vm, then stop the vm
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_softstop_guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_softstop_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -747,15 +695,13 @@ Pause a guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_pause_guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_pause_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -772,15 +718,13 @@ Unpause a guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_unpause_guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_unpause_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -798,15 +742,13 @@ given guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_reboot_guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_reboot_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -824,15 +766,13 @@ z/VM it is running on, then log on the guest and IPL.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_reset_guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_reset_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -849,15 +789,13 @@ Get console output of guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_get_console_guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_get_console_output_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -866,8 +804,6 @@ Get console output of guest.
 * Response contents:
 
   - output: console_output
-
-.. note::
 
    In order to retrieve the console log from guest vm, you must add user direct
    statment "COMMAND SP CONS * START" to the profile that used to deploy guest
@@ -882,7 +818,7 @@ Live migrate guest in z/VM SSI cluster.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_live_migrate_guest
@@ -893,8 +829,6 @@ Live migrate guest in z/VM SSI cluster.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_live_migrate.tpl
-   :language: javascript
 
 * Response code:
 
@@ -911,7 +845,7 @@ Register guest to be managed by z/VM Cloud Connector.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_register_guest
@@ -921,8 +855,6 @@ Register guest to be managed by z/VM Cloud Connector.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_register.tpl
-   :language: javascript
 
 * Response code:
 
@@ -939,15 +871,13 @@ Deregister guest to be managed by z/VM Cloud Connector.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_deregister_guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_deregister.tpl
-   :language: javascript
 
 * Response code:
 
@@ -964,7 +894,7 @@ Live resize CPUs of guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_live_resize_cpus_of_guest
@@ -972,16 +902,12 @@ Live resize CPUs of guest.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_live_resize_cpus_req.tpl
-   :language: javascript
 
 * Response code:
 
   HTTP status code 200 on success.
 
 * Response contents:
-
-.. note::
 
    - Currently only increasing CPU count is supported, decreasing is not supported.
    - The guest to be live resized must be active and managed by z/VM Cloud Connector.
@@ -1003,8 +929,6 @@ Live resize CPUs of guest.
      creating the guest. e.g, the following configuration would define the default maximum CPU count
      as 64.
 
-     .. code-block:: text
-
          [zvm]
          user_default_max_cpu=64
 
@@ -1017,7 +941,7 @@ Resize CPUs of guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_resize_cpus_of_guest
@@ -1025,16 +949,12 @@ Resize CPUs of guest.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_resize_cpus_req.tpl
-   :language: javascript
 
 * Response code:
 
   HTTP status code 200 on success.
 
 * Response contents:
-
-.. note::
 
    - Both increasing and decreasing CPU count are supported.
    - The target guest can be in either 'on' or 'off' status, the definition change would
@@ -1049,7 +969,7 @@ Live resize memory of guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_live_resize_mem_of_guest
@@ -1057,16 +977,12 @@ Live resize memory of guest.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_live_resize_mem_req.tpl
-   :language: javascript
 
 * Response code:
 
   HTTP status code 200 on success.
 
 * Response contents:
-
-.. note::
 
    - Currently only increasing memory size is supported, decreasing is not supported.
    - The guest to be live resized must be active and managed by z/VM Cloud Connector.
@@ -1085,8 +1001,6 @@ Live resize memory of guest.
      creating the guest. e.g, the following configuration would define the default maximum memory size
      as 64G.
 
-     .. code-block:: text
-
          [zvm]
          user_default_max_memory=64g
 
@@ -1099,7 +1013,7 @@ Resize memory of guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_resize_mem_of_guest
@@ -1107,16 +1021,12 @@ Resize memory of guest.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_resize_mem_req.tpl
-   :language: javascript
 
 * Response code:
 
   HTTP status code 200 on success.
 
 * Response contents:
-
-.. note::
 
    - Both increasing and decreasing memory size are supported.
    - The target guest can be in either 'on' or 'off' status, the definition change would
@@ -1131,7 +1041,7 @@ After guest created, deploy image onto the guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_deploy_guest
@@ -1144,8 +1054,6 @@ After guest created, deploy image onto the guest.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_deploy_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -1160,7 +1068,7 @@ Capture guest
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - action: action_capture_guest
@@ -1170,8 +1078,6 @@ Capture guest
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_capture_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -1188,7 +1094,7 @@ Get power state of the guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
 
@@ -1198,14 +1104,12 @@ Get power state of the guest.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: power_status_guest
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_get_power_state.tpl
-   :language: javascript
 
 Update Guest nic
 ----------------
@@ -1216,7 +1120,7 @@ Couple or uncouple nic with vswitch on the guest.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - vdev: vdev_guest
@@ -1227,8 +1131,6 @@ Couple or uncouple nic with vswitch on the guest.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_guest_couple_uncouple_nic.tpl
-   :language: javascript
 
 * Response code:
 
@@ -1245,7 +1147,7 @@ Delete Guest nic
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - userid: guest_userid
   - vdev: vdev_guest
@@ -1281,14 +1183,12 @@ Get host information.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: host_info
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_host_info.tpl
-   :language: javascript
 
 Get Host disk pool info
 -----------------------
@@ -1299,7 +1199,7 @@ Get disk pool information on the host.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - poolname: disk_pool
 
@@ -1309,7 +1209,7 @@ Get disk pool information on the host.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - disk_available: disk_info_available
   - disk_total: disk_info_total
@@ -1317,8 +1217,6 @@ Get disk pool information on the host.
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_host_disk_info.tpl
-   :language: javascript
 
 Image(s)
 ========
@@ -1334,7 +1232,7 @@ Get the list of image info in image repository.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - imagename: imagename
 
@@ -1344,7 +1242,7 @@ Get the list of image info in image repository.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: image_info
   - imagename: image_name
@@ -1358,8 +1256,6 @@ Get the list of image info in image repository.
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_image_query.tpl
-   :language: javascript
 
 Create image
 ------------
@@ -1370,7 +1266,7 @@ Import an image into image repository
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - image: image_dict
   - image_name: image_name
@@ -1380,8 +1276,6 @@ Import an image into image repository
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_image_create_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -1400,7 +1294,7 @@ Export the image to the specified location.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - name: image_name_path
   - location: image_export_location
@@ -1409,8 +1303,6 @@ Export the image to the specified location.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_image_export_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -1418,14 +1310,12 @@ Export the image to the specified location.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: export_image_dict
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_image_export_res.tpl
-   :language: javascript
 
 Get root disk size of image
 ---------------------------
@@ -1436,7 +1326,7 @@ Get the root disk size of the image.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - name: image_name_path
 
@@ -1446,14 +1336,12 @@ Get the root disk size of the image.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: root_disk_size_image
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_image_get_root_disk_size.tpl
-   :language: javascript
 
 Delete image
 ------------
@@ -1464,7 +1352,7 @@ Delete an image.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - name: image_name_path
 
@@ -1490,7 +1378,7 @@ Create a new vswitch.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - name: vswitch_name_body
   - rdev: rdev_vswitch
@@ -1507,8 +1395,6 @@ Create a new vswitch.
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_vswitch_create.tpl
-   :language: javascript
 
 * Response code:
 
@@ -1535,14 +1421,12 @@ Get the list of vswitch name on the host
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: vswitch_list
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_vswitch_get.tpl
-   :language: javascript
 
 GET vswitch details
 -------------------
@@ -1553,7 +1437,7 @@ Get the details of a vswitch
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - name: vswitch_name
 
@@ -1563,14 +1447,12 @@ Get the details of a vswitch
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: vswitch_details
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_vswitch_query.tpl
-   :language: javascript
 
 Grant user to vswitch
 ---------------------
@@ -1581,7 +1463,7 @@ Grant an user to access vswitch
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - name: vswitch_name
   - vswitch: vswitch_info
@@ -1589,8 +1471,6 @@ Grant an user to access vswitch
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_vswitch_update_req.tpl
-   :language: javascript
 
 * Response code:
 
@@ -1609,7 +1489,7 @@ Revoke the user access from vswitch
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - name: vswitch_name
   - vswitch: vswitch_info
@@ -1617,8 +1497,6 @@ Revoke the user access from vswitch
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_vswitch_update_revoke.tpl
-   :language: javascript
 
 * Response code:
 
@@ -1637,7 +1515,7 @@ Set vlan id for user when connecting to the vswitch
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - name: vswitch_name
   - vswitch: vswitch_info
@@ -1647,8 +1525,6 @@ Set vlan id for user when connecting to the vswitch
 
 * Request sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_vswitch_set_vlan.tpl
-   :language: javascript
 
 * Response code:
 
@@ -1667,7 +1543,7 @@ Delete a vswitch by using given name.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - name: vswitch_name
 
@@ -1696,7 +1572,7 @@ contains the binary data.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - Content-type: file_request_header
 
@@ -1711,7 +1587,7 @@ contains the binary data.
 
 * Response contents:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - output: file_import_output
   - dest_url: file_import_dest_url
@@ -1720,8 +1596,6 @@ contains the binary data.
 
 * Response sample:
 
-.. literalinclude:: ../../zvmsdk/tests/fvt/api_templates/test_file_import_res.tpl
-   :language: javascript
 
 
 Export file
@@ -1733,7 +1607,7 @@ Export file from zVM Cloud Connector, internal use only.
 
 * Request:
 
-.. restapi_parameters:: parameters.yaml
+
 
   - source_file: export_source_file
 
