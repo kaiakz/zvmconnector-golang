@@ -1,6 +1,7 @@
 package zvmconnector
 
 import (
+	"io"
 	"net/http"
 	"os"
 	"strconv"
@@ -10,7 +11,7 @@ import (
 // RestClient use the sdk api
 type RestClient struct {
 	connect   *http.Client
-	URL       string
+	Authority string
 	authToken string
 }
 
@@ -21,8 +22,8 @@ func NewRestClient(ip string, port uint16, timeout time.Duration, tokenPath stri
 	httpClient.Timeout = timeout
 
 	c := &RestClient{
-		connect: httpClient,
-		URL:     serverAddr,
+		connect:   httpClient,
+		Authority: serverAddr,
 	}
 	return c, nil
 }
@@ -47,7 +48,7 @@ func (client *RestClient) RefreshToken(tokenPath string) {
 	var buf []byte
 	_, err = f.Read(buf)
 	atoken := string(buf)
-	req, _ := http.NewRequest("POST", client.URL, nil)
+	req, _ := http.NewRequest("POST", client.Authority, nil)
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("X-Admin-Token", atoken)
 	res, err := client.connect.Do(req)
@@ -58,12 +59,20 @@ func (client *RestClient) RefreshToken(tokenPath string) {
 	client.authToken = res.Header.Get("X-Auth-Token")
 }
 
-func (client *RestClient) ReqVersion() {
-	url := client.URL + "\\"
-	req, _ := http.NewRequest("GET", url, nil)
+func (client *RestClient) MakeRequest(method string, path string, body io.Reader) {
+	uri := client.Authority + path
+	req, _ := http.NewRequest(method, uri, nil)
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("X-Auth-Token", client.authToken)
 	res, _ := client.connect.Do(req)
 	defer res.Body.Close()
+}
 
+func (client *RestClient) ReqVersion() {
+	uri := client.Authority + "\\"
+	req, _ := http.NewRequest("GET", uri, nil)
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("X-Auth-Token", client.authToken)
+	res, _ := client.connect.Do(req)
+	defer res.Body.Close()
 }

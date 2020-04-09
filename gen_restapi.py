@@ -6,7 +6,7 @@ rst_path = "./source/restapi.rst"
 f = open(rst_path, "r")
 
 src = f.readlines()
-
+f.close()
 i = 25
 
 raw = []
@@ -22,11 +22,12 @@ while i < len(src):
     #Parse the titles above "====="
     if s.startswith("---"):
         name = raw[-1]
-        data.append({name: name})
+        data.append({'name': name})
     #Parse method with "**"
     elif s.startswith("**"):
         url = s.replace("**", "").strip()
-        data[-1]['url'] = url
+        data[-1]['restapi'] = url
+        # print(url)
     elif s.startswith("* "):
         current = s.replace("* ", "").replace(":", "").strip()
         data[-1][current] = []
@@ -39,4 +40,36 @@ while i < len(src):
     else:
         raw.append(s.strip())
 
-print(data)
+def make_golang_func(api: str) -> str:
+    return api.title().replace(" ", "")
+
+f = open("gen.go", "w")
+
+f.write('''package zvmconnector
+
+import (
+	"net/http"
+	"os"
+	"strconv"
+)
+
+''')
+
+# uri := client.URI + "\\"
+# req, _ := http.NewRequest("GET", uri, nil)
+# req.Header.Add("Content-Type", "application/json")
+# req.Header.Add("X-Auth-Token", client.authToken)
+# res, _ := client.connect.Do(req)
+# defer res.Body.Close()
+
+def get_uri(uri: str) -> (str, str):
+    return uri.split()
+
+for i in data:
+    f.write("func (client *RestClient) " + make_golang_func(i['name']) + '() {\n')
+    uri = i['restapi'].split()
+    f.write('\tclient.MakeRequest("{method}", "{path}", nil)'.format(method=uri[0], path=uri[1]))
+    f.write('\n}\n\n')
+
+
+f.close()
